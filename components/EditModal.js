@@ -98,12 +98,13 @@ export default class EditModal extends Component {
                             return;
                         }       
                        // update edit food
-                       var foundIndex = flastListData.findIndex( item=>this.state.key == item.key );
+                       var foundIndex = flatListData.findIndex( item=>this.state.key == item.key );
                        if (foundIndex < 0 ) {
                             return; // not found
                        }
-                       flastListData[foundIndex].name = this.state.FoodName;
-                       flastListData[foundIndex].foodDescription = this.state.FoodDescription;
+                       flatListData[foundIndex].name = this.state.FoodName;
+                       flatListData[foundIndex].foodDescription = this.state.FoodDescription;
+                        this.state.flatlistItem.refreshFlatListItem();
                         this.refs.myModal.close();                                                                       
                     }}>
                     Save

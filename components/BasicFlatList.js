@@ -1,10 +1,4 @@
-/*
-Mr Nguyen Duc Hoang
-https://www.youtube.com/c/nguyenduchoang
-Email: sunlight4d@gmail.com
-FlatList Component with Images
-Add newFood to FlatList
-*/
+
 import React, { Component } from 'react';
 import { AppRegistry, FlatList, StyleSheet, Text, View, Image, Alert, Platform, TouchableHighlight } from 'react-native';
 import flatListData from '../data/flatListData';
@@ -16,8 +10,17 @@ class FlatListItem extends Component {
     constructor(props) {
         super(props);   
         this.state = {
-            activeRowKey: null
+            activeRowKey: null,
+            numberOfRefresh:0
         };          
+    }
+    // refreshFlatListitem edit
+    refreshFlatListItem = ()=> {
+        this.setState((prevState)=>{
+            return {
+                numberOfRefresh : prevState.numberOfRefresh + 1
+            };
+        });
     }
     render() {   
         const swipeSettings = {
@@ -34,8 +37,8 @@ class FlatListItem extends Component {
                 {
                     onPress:()=> {
                         // alert("update");
-                        console.log('editingFood = ${JSON.stringify(editingFood)}');
-                        console.log(1);
+                        // console.log('editingFood = ${JSON.stringify(editingFood)}');
+                        // console.log(1);
                         this.props.parentFlatList.refs.editModal.showEditModal(flatListData[this.props.index],this)
                     },
                     text:'Edit',type:'primary'
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
 });
 
 export default class BasicFlatList extends Component {
+
     constructor(props) {
         super(props);     
         this.state = ({
